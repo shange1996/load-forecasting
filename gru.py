@@ -507,20 +507,20 @@ if train:
         file_path_1 = now_floder + str(i+1) + "_1test.hdf5"
         checkpoint = ModelCheckpoint(file_path_1, monitor='val_loss', save_best_only=True, mode='min', save_weights_only=True)
         callback_list = [checkpoint]
-        history1 = model.fit(x_train_fit, y_train_fit, epochs=epoch_1, batch_size=128, validation_data=(x_test_pred, y_test_pred),
+        history1 = model.fit(x_train_fit, y_train_fit, epochs=epoch_1, batch_size=128, validation_data=(x_val_fit, y_val_fit),
                              verbose=2, callbacks=callback_list)
 
         file_path_2 = now_floder + str(i+1) + "_2test.hdf5"
         checkpoint = ModelCheckpoint(file_path_2, monitor='val_loss', save_best_only=True, mode='min', save_weights_only=True)
         callback_list = [checkpoint]
         history2 = model.fit(x_train_fit, y_train_fit, epochs=epoch_2, batch_size=128,
-                             validation_data=(x_test_pred, y_test_pred), verbose=2, callbacks=callback_list)
+                             validation_data=(x_val_fit, y_val_fit), verbose=2, callbacks=callback_list)
 
         file_path_3 = now_floder + str(i+1) + "_3test.hdf5"
         checkpoint = ModelCheckpoint(file_path_3, monitor='val_loss', save_best_only=True, mode='min',save_weights_only=True)
         callback_list = [checkpoint]
         history3 = model.fit(x_train_fit, y_train_fit, epochs=epoch_3, batch_size=128,
-                             validation_data=(x_test_pred, y_test_pred), verbose=2, callbacks=callback_list)
+                             validation_data=(x_val_fit, y_val_fit), verbose=2, callbacks=callback_list)
         val_loss_1 = history1.history['val_loss']
         val_loss_2 = history2.history['val_loss']
         val_loss_3 = history3.history['val_loss']
